@@ -85,13 +85,14 @@
 - [ ] 5.2 — Качество кода: `ruff` (linter+formatter), `mypy`/`pyright` (type checking)
 - [ ] 5.3 — `mypy` на практике: аннотирование реального кода, `--strict`, игнорирование ошибок
 - [ ] 5.4 — Отладка: `pdb`, `breakpoint()`, отладка в VS Code
-- [ ] 5.5 — HTTP клиенты: `requests`, `httpx` (async)
-- [ ] 5.6 — `logging` модуль: уровни, handlers, форматирование
-- [ ] 5.7 — Тестирование: `pytest`, фикстуры, моки (`unittest.mock`)
-- [ ] 5.8 — Скриптинг и автоматизация: `pathlib`, `subprocess`, `os`, `shutil`
-- [ ] 5.9 — Web: FastAPI (обзор, пример async REST API)
-- [ ] 5.10 — Данные: `pandas`, `numpy` (поверхностно)
-- [ ] 5.11 — Популярные области: ML/AI, DevOps/автоматизация, парсинг, бэкенд
+- [ ] 5.5 — Профилирование: `cProfile`, `line_profiler`, `py-spy` — находить узкие места в коде
+- [ ] 5.6 — HTTP клиенты: `requests`, `httpx` (async)
+- [ ] 5.7 — `logging` модуль: уровни, handlers, форматирование
+- [ ] 5.8 — Тестирование: `pytest`, фикстуры, моки (`unittest.mock`)
+- [ ] 5.9 — Скриптинг и автоматизация: `pathlib`, `subprocess`, `os`, `shutil`
+- [ ] 5.10 — Web: FastAPI (обзор, пример async REST API)
+- [ ] 5.11 — Данные: `pandas`, `numpy` (поверхностно)
+- [ ] 5.12 — Популярные области: ML/AI, DevOps/автоматизация, парсинг, бэкенд
 
 ### Phase 6: Алгоритмы и структуры данных
 
@@ -166,21 +167,22 @@
 - [ ] 8.4 — Migrations: `makemigrations`, `migrate`, схема изменений
 - [ ] 8.5 — Django ORM: запросы (`filter`, `exclude`, `annotate`, `aggregate`)
 - [ ] 8.6 — ORM: связи (FK, M2M, O2O), `select_related`, `prefetch_related`
-- [ ] 8.7 — Views и URLs: function-based views, `urlpatterns`, `include`
-- [ ] 8.8 — Class-based views (CBV): `View`, `ListView`, `DetailView`, когда что
-- [ ] 8.9 — Middleware в Django: принцип, кастомный middleware
-- [ ] 8.10 — Django Admin: регистрация моделей, кастомизация
-- [ ] 8.11 — DRF: Serializers — валидация, трансформация, вложенность
-- [ ] 8.12 — DRF: `APIView`, generic views (`ListCreateAPIView`, etc.)
-- [ ] 8.13 — DRF: ViewSets + Routers — автоматический routing
-- [ ] 8.14 — DRF: Authentication (`SessionAuth`, `TokenAuth`, `JWT`)
-- [ ] 8.15 — DRF: Permissions — встроенные и кастомные
-- [ ] 8.16 — DRF: Pagination, filtering (`django-filter`), ordering
-- [ ] 8.17 — Django async: async views, ORM async API (`aget`, `afilter`)
-- [ ] 8.18 — Тестирование Django: `pytest-django`, `APIClient`, фабрики (`factory_boy`)
-- [ ] 8.19 — Celery: асинхронные задачи, очереди, beat-scheduler
-- [ ] 8.20 — Redis в Django: кэширование (`django-redis`), сессии, rate limiting
-- [ ] 8.21 — Деплой: Docker + `gunicorn`/`uvicorn`, `nginx`, переменные окружения в продакшне
+- [ ] 8.7 — N+1 запросы: что это, как диагностировать (`django-silk`), как устранять
+- [ ] 8.8 — Views и URLs: function-based views, `urlpatterns`, `include`
+- [ ] 8.9 — Class-based views (CBV): `View`, `ListView`, `DetailView`, когда что
+- [ ] 8.10 — Middleware в Django: принцип, кастомный middleware
+- [ ] 8.11 — Django Admin: регистрация моделей, кастомизация
+- [ ] 8.12 — DRF: Serializers — валидация, трансформация, вложенность
+- [ ] 8.13 — DRF: `APIView`, generic views (`ListCreateAPIView`, etc.)
+- [ ] 8.14 — DRF: ViewSets + Routers — автоматический routing
+- [ ] 8.15 — DRF: Authentication (`SessionAuth`, `TokenAuth`, `JWT`)
+- [ ] 8.16 — DRF: Permissions — встроенные и кастомные
+- [ ] 8.17 — DRF: Pagination, filtering (`django-filter`), ordering
+- [ ] 8.18 — Django async: async views, ORM async API (`aget`, `afilter`)
+- [ ] 8.19 — Тестирование Django: `pytest-django`, `APIClient`, фабрики (`factory_boy`)
+- [ ] 8.20 — Celery: асинхронные задачи, очереди, beat-scheduler
+- [ ] 8.21 — Redis в Django: кэширование (`django-redis`), сессии, rate limiting
+- [ ] 8.22 — Деплой: Docker + `gunicorn`/`uvicorn`, `nginx`, переменные окружения в продакшне
 
 ### Phase 9: Архитектура Python-проектов + DDD
 - [ ] 9.1 — Обзор: почему в Python нет "одного NestJS" — культура свободы vs конвенции
@@ -192,6 +194,34 @@
 - [ ] 9.7 — Clean Architecture / Hexagonal: ports & adapters, инверсия зависимостей
 - [ ] 9.8 — DDD (обзорно): Entity, Value Object, Aggregate, Domain Event
 - [ ] 9.9 — DDD (обзорно): Repository, Domain Service vs Application Service, Bounded Context
+
+### Phase 10: Production & Scale
+
+> Читается после Phase 8. Требует понимания async (Phase 4), Django ORM (8.3–8.7) и деплоя (8.22).
+
+#### 10A: High RPS — 10 000+ запросов в секунду
+
+- [ ] 10.1 — Узкие места Python под нагрузкой: GIL, I/O-bound vs CPU-bound — что масштабируется
+- [ ] 10.2 — Async I/O стек для высокого RPS: `uvicorn`, `asyncpg`, `aioredis`
+- [ ] 10.3 — Connection pooling: настройка пула БД (`asyncpg`, `psycopg3`, SQLAlchemy pool)
+- [ ] 10.4 — Кэширование: Redis, `lru_cache`, `cachetools`, стратегии инвалидации
+- [ ] 10.5 — Workers и процессы: `gunicorn` + `uvicorn`, количество воркеров, `--workers` vs `--threads`
+- [ ] 10.6 — Индексы БД: составные, частичные, покрывающие — как и когда создавать
+- [ ] 10.7 — `EXPLAIN ANALYZE` в PostgreSQL: читать план запроса, находить seq scan
+- [ ] 10.8 — Rate limiting, circuit breaker, таймауты — защита сервиса под нагрузкой
+- [ ] 10.9 — Нагрузочное тестирование: `locust` — написать сценарий, интерпретировать результаты
+
+#### 10B: Большие данные — 100M+ записей
+
+- [ ] 10.10 — Проблема OFFSET на больших таблицах и cursor-based пагинация как решение
+- [ ] 10.11 — Django ORM: `iterator()`, `only()`, `defer()`, `values()`, `values_list()` — экономия памяти
+- [ ] 10.12 — Chunked processing: обработка данных частями через генераторы
+- [ ] 10.13 — `bulk_create` и `bulk_update`: пакетные операции вместо N INSERT/UPDATE
+- [ ] 10.14 — Raw SQL в Django: `connection.execute()`, `RawQuerySet` — когда ORM становится узким местом
+- [ ] 10.15 — Streaming HTTP response: отдавать данные частями, `StreamingHttpResponse`
+- [ ] 10.16 — pandas с большими данными: `chunksize` в `read_sql`, `read_csv`, обработка по частям
+- [ ] 10.17 — Партиционирование таблиц PostgreSQL: range, list, hash — когда и зачем
+- [ ] 10.18 — ETL-паттерн на Python: extract → transform → load батчами, прогресс и возобновление
 
 ---
 
