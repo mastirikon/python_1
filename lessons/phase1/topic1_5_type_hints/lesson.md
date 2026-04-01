@@ -354,20 +354,20 @@ result = process(None)
 
 Type hints — необязательные аннотации типов, добавленные в Python 3.5+. Интерпретатор их **игнорирует в рантайме** (по умолчанию), но их используют статические анализаторы (`mypy`, `pyright`), IDE и библиотеки вроде `pydantic`/`FastAPI`. Главное отличие от TypeScript: аннотации хранятся в `__annotations__` и доступны в рантайме — это делает возможным такие вещи как автоматическая валидация в FastAPI.
 
-### JS → Python
+### Python → JS
 
-| TypeScript | Python | Отличие |
-|-----------|--------|---------|
-| `let x: number = 42` | `x: int = 42` | Почти одинаково |
-| `function f(a: string): void` | `def f(a: str) -> None:` | `->` вместо `:` для возвращаемого типа |
-| `string \| null` | `str \| None` (3.10+) или `Optional[str]` | В старом Python нужен `Optional` из `typing` |
-| `string \| number` | `str \| int` (3.10+) или `Union[str, int]` | Аналогично |
-| `Array<number>` | `list[int]` (3.9+) или `List[int]` | В старом Python — заглавные из `typing` |
-| `Record<string, number>` | `dict[str, int]` | — |
-| `[number, string]` | `tuple[int, str]` | — |
-| `(a: number) => string` | `Callable[[int], str]` | Синтаксис через `Callable` |
-| `function f<T>(x: T): T` | `T = TypeVar("T"); def f(x: T) -> T:` | TypeVar нужно объявлять явно |
-| Компилятор удаляет типы | Типы остаются в `__annotations__` | Ключевое отличие! |
+| Python | Что делает | TypeScript |
+|--------|-----------|-----------|
+| `x: int = 42` | аннотация переменной | `let x: number = 42` |
+| `def f(a: str) -> None:` | аннотация функции | `function f(a: string): void` |
+| `str \| None` (3.10+) или `Optional[str]` | опциональный тип | `string \| null` |
+| `str \| int` (3.10+) или `Union[str, int]` | union тип | `string \| number` |
+| `list[int]` (3.9+) или `List[int]` | типизированный список | `Array<number>` |
+| `dict[str, int]` | типизированный словарь | `Record<string, number>` |
+| `tuple[int, str]` | типизированный кортеж | `[number, string]` |
+| `Callable[[int], str]` | тип функции | `(a: number) => string` |
+| `T = TypeVar("T"); def f(x: T) -> T:` | generic-функция | `function f<T>(x: T): T` |
+| Типы остаются в `__annotations__` | доступны в рантайме | компилятор удаляет типы |
 
 ### Синтаксис / API
 

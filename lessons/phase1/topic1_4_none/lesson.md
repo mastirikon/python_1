@@ -204,16 +204,15 @@ print(add_item("b"))  # ['b'] ← правильно
 ### Суть
 `None` — единственное "пустое" значение в Python, синглтон типа `NoneType`. Заменяет и `null`, и `undefined` из JS. Всегда проверяй через `is None` / `is not None`, а не через `==`. Является falsy-значением, но не путай с `0`, `""`, `[]` — они тоже falsy, но не `None`.
 
-### JS → Python
+### Python → JS
 
-| JavaScript | Python | Отличие |
-|-----------|--------|---------|
-| `null` | `None` | В Python один тип вместо двух |
-| `undefined` | `None` | Нет отдельного undefined |
-| `=== null` | `is None` | `==` можно переопределить — опасно |
-| `!== null` | `is not None` | Идиоматичная проверка |
-| `string \| null` (TS) | `str \| None` или `Optional[str]` | Синтаксис type hints |
-| `function() {}` → `undefined` | `def f(): pass` → `None` | Функция без return возвращает None |
+| Python | Что делает | JavaScript |
+|--------|-----------|-----------|
+| `None` | единственное пустое значение | `null` + `undefined` |
+| `is None` | проверка через идентичность объекта | `=== null` |
+| `is not None` | проверка наличия значения | `!== null` |
+| `str \| None` или `Optional[str]` | тип hints для опционального значения | `string \| null` (TS) |
+| `def f(): pass` → `None` | функция без return возвращает None | `function() {}` → `undefined` |
 
 ### Синтаксис / API
 

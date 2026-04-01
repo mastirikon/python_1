@@ -8,8 +8,8 @@
 ## Текущий статус
 
 **Фаза:** 1 — Синтаксис и встроенные типы
-**Текущая тема:** 1.7 — Строки: методы
-**Следующий шаг:** Phase 1, Topic 1.7 — Строки: методы (`split`, `join`, `strip`, `replace`, `startswith`), `str` vs `bytes`
+**Текущая тема:** 1.8 — f-strings
+**Следующий шаг:** Phase 1, Topic 1.8 — f-strings: форматирование, выражения внутри `{}`, `=` для отладки (`f"{x=}"`)
 
 ---
 
@@ -22,7 +22,7 @@
 - [x] 1.4 — `None` vs JS `null`/`undefined`: проверка `is None`, `Optional`-паттерн
 - [x] 1.5 — Type hints: базовый синтаксис, `x: int`, `-> str`, зачем нужны
 - [x] 1.6 — Строки: иммутабельность, индексация, срезы `s[1:3]`, `s[::-1]`
-- [ ] 1.7 — Строки: методы (`split`, `join`, `strip`, `replace`, `startswith`), `str` vs `bytes`
+- [x] 1.7 — Строки: методы (`split`, `join`, `strip`, `replace`, `startswith`), `str` vs `bytes`
 - [ ] 1.8 — f-strings: форматирование, выражения внутри `{}`, `=` для отладки (`f"{x=}"`)
 - [ ] 1.9 — Управляющие конструкции: `if/elif/else`, тернарный оператор, `match/case` (3.10+)
 - [ ] 1.10 — Циклы: `for`, `while`, `break`, `continue`, `else` у циклов (редкая фича)
@@ -237,6 +237,7 @@
 | 2026-03-28 | 1.4 — None vs null/undefined | Пройдено: is None, None-паттерн, Optional, mutable default ловушка. Решены 3 задачи. |
 | 2026-03-29 | 1.5 — Type hints | Пройдено: базовый синтаксис, Optional, Union, TypeVar, Generic, narrowing. Решены 3 задачи. |
 | 2026-03-30 | 1.6 — Строки | Пройдено: иммутабельность, индексация, срезы, str vs bytes, join. Решены 3 задачи. |
+| 2026-04-01 | 1.7 — Строки: методы | Пройдено: find, replace, split, join, strip, startswith, bytes. Решены 3 задачи. |
 
 ---
 
