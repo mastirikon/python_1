@@ -8,8 +8,8 @@
 ## Текущий статус
 
 **Фаза:** 1 — Синтаксис и встроенные типы
-**Текущая тема:** 1.8 — f-strings
-**Следующий шаг:** Phase 1, Topic 1.8 — f-strings: форматирование, выражения внутри `{}`, `=` для отладки (`f"{x=}"`)
+**Текущая тема:** 1.9 — Управляющие конструкции
+**Следующий шаг:** Phase 1, Topic 1.9 — `if/elif/else`, тернарный оператор, `match/case` (3.10+)
 
 ---
 
@@ -23,7 +23,7 @@
 - [x] 1.5 — Type hints: базовый синтаксис, `x: int`, `-> str`, зачем нужны
 - [x] 1.6 — Строки: иммутабельность, индексация, срезы `s[1:3]`, `s[::-1]`
 - [x] 1.7 — Строки: методы (`split`, `join`, `strip`, `replace`, `startswith`), `str` vs `bytes`
-- [ ] 1.8 — f-strings: форматирование, выражения внутри `{}`, `=` для отладки (`f"{x=}"`)
+- [x] 1.8 — f-strings: форматирование, выражения внутри `{}`, `=` для отладки (`f"{x=}"`)
 - [ ] 1.9 — Управляющие конструкции: `if/elif/else`, тернарный оператор, `match/case` (3.10+)
 - [ ] 1.10 — Циклы: `for`, `while`, `break`, `continue`, `else` у циклов (редкая фича)
 - [ ] 1.11 — Списки: создание, индексация, срезы, `append`, `extend`, `insert`, `pop`, `sort`
@@ -161,37 +161,43 @@
 - [ ] 7.17 — Какие GoF-паттерны в Python не нужны и почему (first-class functions, duck typing)
 - [ ] 7.18 — Питоновские идиомы как паттерны: `context manager`, `descriptor`, `mixin`
 
-### Phase 8: Django + Django REST Framework
-- [ ] 8.1 — Django: обзор, MTV vs MVC (аналог Express/Fastify), структура проекта
-- [ ] 8.2 — Настройка: `settings.py`, `django-environ`, разделение конфигов
-- [ ] 8.3 — Models: ORM, типы полей, `Meta`, `__str__`
-- [ ] 8.4 — Migrations: `makemigrations`, `migrate`, схема изменений
-- [ ] 8.5 — Django ORM: запросы (`filter`, `exclude`, `annotate`, `aggregate`)
-- [ ] 8.6 — ORM: связи (FK, M2M, O2O), `select_related`, `prefetch_related`
-- [ ] 8.7 — N+1 запросы: что это, как диагностировать (`django-silk`), как устранять
-- [ ] 8.8 — Views и URLs: function-based views, `urlpatterns`, `include`
-- [ ] 8.9 — Class-based views (CBV): `View`, `ListView`, `DetailView`, когда что
-- [ ] 8.10 — Middleware в Django: принцип, кастомный middleware
-- [ ] 8.11 — Django Admin: регистрация моделей, кастомизация
-- [ ] 8.12 — DRF: Serializers — валидация, трансформация, вложенность
-- [ ] 8.13 — DRF: `APIView`, generic views (`ListCreateAPIView`, etc.)
-- [ ] 8.14 — DRF: ViewSets + Routers — автоматический routing
-- [ ] 8.15 — DRF: Authentication (`SessionAuth`, `TokenAuth`, `JWT`)
-- [ ] 8.16 — DRF: Permissions — встроенные и кастомные
-- [ ] 8.17 — DRF: Pagination, filtering (`django-filter`), ordering
-- [ ] 8.18 — Django async: async views, ORM async API (`aget`, `afilter`)
-- [ ] 8.19 — Тестирование Django: `pytest-django`, `APIClient`, фабрики (`factory_boy`)
-- [ ] 8.20 — Celery: асинхронные задачи, очереди, beat-scheduler
-- [ ] 8.21 — Redis в Django: кэширование (`django-redis`), сессии, rate limiting
-- [ ] 8.22 — Деплой: Docker + `gunicorn`/`uvicorn`, `nginx`, переменные окружения в продакшне
+### Phase 8: FastAPI (основной фреймворк)
+
+> Flask и Django разбираются **только для сравнения** — как они решают те же задачи иначе, подкапотные отличия. Основной стек: FastAPI + SQLAlchemy (async) + Pydantic + Alembic.
+
+**Основы FastAPI:**
+- [ ] 8.1 — Обзор: FastAPI vs Flask vs Django — философия, sync vs async, auto-docs; почему FastAPI быстрее
+- [ ] 8.2 — Первое приложение: `uvicorn`, роутеры, path/query параметры, статус-коды
+- [ ] 8.3 — Pydantic v2: модели, валидация, сериализация — основа FastAPI (vs DRF Serializers)
+- [ ] 8.4 — Request body, `Form`, `File` — как FastAPI парсит входящие данные
+- [ ] 8.5 — Response models: `response_model`, `JSONResponse`, кастомные ответы
+- [ ] 8.6 — Dependency Injection в FastAPI: `Depends` — мощнее, чем в Django/Flask
+- [ ] 8.7 — Middleware в FastAPI vs Django: ASGI middleware, `BaseHTTPMiddleware`
+- [ ] 8.8 — Аутентификация: OAuth2, JWT, `HTTPBearer` — сравнение с DRF TokenAuth
+
+**База данных:**
+- [ ] 8.9 — SQLAlchemy (async): `AsyncSession`, `AsyncEngine`, подключение к PostgreSQL
+- [ ] 8.10 — SQLAlchemy ORM: модели, типы, `relationship` — сравнение с Django ORM
+- [ ] 8.11 — Alembic: миграции — аналог `makemigrations`/`migrate` в Django
+- [ ] 8.12 — Repository pattern + Service layer в FastAPI: правильная архитектура
+- [ ] 8.13 — N+1 в SQLAlchemy: `selectinload`, `joinedload` — сравнение с `select_related`/`prefetch_related`
+
+**Продвинутые темы:**
+- [ ] 8.14 — Background tasks: `BackgroundTasks` vs Celery — когда что использовать
+- [ ] 8.15 — WebSockets в FastAPI: `WebSocket`, broadcast — чего нет из коробки в Django
+- [ ] 8.16 — Тестирование: `httpx.AsyncClient`, `pytest-asyncio` — сравнение с `pytest-django`
+- [ ] 8.17 — OpenAPI / Swagger: автодокументация FastAPI vs ручной drf-spectacular в Django
+- [ ] 8.18 — Деплой: `uvicorn` + `gunicorn`, Docker, переменные окружения
+- [ ] 8.19 — Flask (сравнение): синхронный микрофреймворк, BluePrints, когда Flask уместнее FastAPI
+- [ ] 8.20 — Django (сравнение): монолит vs микросервис, когда Django выигрывает у FastAPI
 
 ### Phase 9: Архитектура Python-проектов + DDD
 - [ ] 9.1 — Обзор: почему в Python нет "одного NestJS" — культура свободы vs конвенции
-- [ ] 9.2 — Django-way: "apps" как модули, структура app (models/views/services/urls)
-- [ ] 9.3 — Layered architecture: Router → Service → Repository (FastAPI/Django без ORM)
-- [ ] 9.4 — Repository pattern в Python: абстракция над ORM/БД
-- [ ] 9.5 — Service layer: бизнес-логика отдельно от views/serializers
-- [ ] 9.6 — Dependency Injection в Python: ручной DI vs `dependency-injector` библиотека
+- [ ] 9.2 — FastAPI-way: структура проекта, модули, routers — аналог NestJS modules
+- [ ] 9.3 — Layered architecture: Router → Service → Repository в FastAPI
+- [ ] 9.4 — Repository pattern в Python: абстракция над SQLAlchemy/БД
+- [ ] 9.5 — Service layer: бизнес-логика отдельно от роутеров/схем
+- [ ] 9.6 — Dependency Injection в Python: `Depends` в FastAPI vs `dependency-injector` библиотека
 - [ ] 9.7 — Clean Architecture / Hexagonal: ports & adapters, инверсия зависимостей
 - [ ] 9.8 — DDD (обзорно): Entity, Value Object, Aggregate, Domain Event
 - [ ] 9.9 — DDD (обзорно): Repository, Domain Service vs Application Service, Bounded Context
@@ -215,11 +221,11 @@
 #### 10B: Большие данные — 100M+ записей
 
 - [ ] 10.10 — Проблема OFFSET на больших таблицах и cursor-based пагинация как решение
-- [ ] 10.11 — Django ORM: `iterator()`, `only()`, `defer()`, `values()`, `values_list()` — экономия памяти
+- [ ] 10.11 — SQLAlchemy: `stream_results`, `yield_per`, `only()`, `defer()` — экономия памяти (аналоги Django ORM)
 - [ ] 10.12 — Chunked processing: обработка данных частями через генераторы
 - [ ] 10.13 — `bulk_create` и `bulk_update`: пакетные операции вместо N INSERT/UPDATE
-- [ ] 10.14 — Raw SQL в Django: `connection.execute()`, `RawQuerySet` — когда ORM становится узким местом
-- [ ] 10.15 — Streaming HTTP response: отдавать данные частями, `StreamingHttpResponse`
+- [ ] 10.14 — Raw SQL в SQLAlchemy: `text()`, `execute()` — когда ORM становится узким местом
+- [ ] 10.15 — Streaming HTTP response в FastAPI: `StreamingResponse`, генераторы
 - [ ] 10.16 — pandas с большими данными: `chunksize` в `read_sql`, `read_csv`, обработка по частям
 - [ ] 10.17 — Партиционирование таблиц PostgreSQL: range, list, hash — когда и зачем
 - [ ] 10.18 — ETL-паттерн на Python: extract → transform → load батчами, прогресс и возобновление
@@ -238,6 +244,7 @@
 | 2026-03-29 | 1.5 — Type hints | Пройдено: базовый синтаксис, Optional, Union, TypeVar, Generic, narrowing. Решены 3 задачи. |
 | 2026-03-30 | 1.6 — Строки | Пройдено: иммутабельность, индексация, срезы, str vs bytes, join. Решены 3 задачи. |
 | 2026-04-01 | 1.7 — Строки: методы | Пройдено: find, replace, split, join, strip, startswith, bytes. Решены 3 задачи. |
+| 2026-04-10 | 1.8 — f-strings | Пройдено: форматирование, `!r`/`!s`, `=` для отладки, format specs. Решены 3 задачи включая шаблонизатор с re и SafeDict. |
 
 ---
 
@@ -247,3 +254,6 @@
 |------|---|----------|-----------|------|
 | 2026-03-24 | 1 | Две суммы | Easy | Python |
 | 2026-03-24 | 9 | Число-палиндром | Easy | Python |
+| 2026-03-28 | 13 | Roman to Integer | Easy | Python |
+| 2026-03-30 | 14 | Longest Common Prefix | Easy | Python |
+| 2026-04-01 | 20 | Valid Parentheses | Easy | Python |
